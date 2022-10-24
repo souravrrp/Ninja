@@ -1,0 +1,90 @@
+{% extends 'ninja/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'ninja:home' %}">Home</a></li>
+              <li class="breadcrumb-item active">Home</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-12 card">
+            <div class="card-header">
+              <h1 class="card-title">List of Reports</h1>
+             
+                <button class="btn btn-sm btn-danger ml-2 font-weight-bold" onClick="window.location.reload();" title="Click here to Reload the Page.">
+                  Reload
+                </button>
+             
+            </div>
+            <div class="card-body">
+              <div class="col-md-12">
+
+                {% if messages %}
+                <div class="row">
+                  <div class="col-md-12">
+                    {% for message in messages %}
+                    <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                      <p class="mb-0 text-center">{{ message }}</p>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+              <!-- Content start -->
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="table_id">
+                  <thead>
+                      <tr>
+                          <th>SL.</th>
+                          <th>PDF File</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in files %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item }}</td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'ninja:print_pdf' item%}" title="Click here to Print or View report." target="_blank">
+                          <i class="fa fa-print" aria-hidden="true"></i> <b>Print/View</b></a></td>
+                    </tr>
+                   {% endfor %}
+                  </tbody>
+              </table>
+              </div>
+              <!-- Content end -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.content -->
+</div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+{% block extra_js %}
+<script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
+{% endblock %}
