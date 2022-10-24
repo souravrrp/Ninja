@@ -28,10 +28,10 @@ def login_view(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         
-        try:
-            cx_Oracle.init_oracle_client(lib_dir="F:\oracle\ora92\network\ADMIN")
-        except:
-            pass
+    try:
+        cx_Oracle.init_oracle_client(lib_dir=r"D:\Installed_Software\instantclient_10_1\network\ADMIN")
+    except:
+        pass
 
         try:
             with cx_Oracle.connect(user="ifsapp", password="userofifs", dsn="192.168.101.22/singerbd") as connection:
