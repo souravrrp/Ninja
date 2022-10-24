@@ -6,9 +6,48 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import AddressForm
 
+import cx_Oracle
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
 # Create your views here.
 def index(request):
     return HttpResponse("Hello World!")
+
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+def login_view(request):
+    context={}
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        
+        try:
+            cx_Oracle.init_oracle_client(lib_dir="F:\oracle\ora92\network\ADMIN")
+        except:
+            pass
+
+        try:
+            with cx_Oracle.connect(user="ifsapp", password="userofifs", dsn="192.168.101.22/singerbd") as connection:
+                with connection.cursor() as cursor:
+                    sql = """select sysdate from dual"""
+                    print(dictfetchall(cursor.execute(sql)))
+
+                    request.session['username'] = username.upper()
+                    request.session['password'] = password.upper()
+                    return redirect('ninja:home')
+
+        except cx_Oracle.DatabaseError:
+            messages.warning(request, "Username or Password is incorrect !")
+        return render(request, 'ninja/login.html', context)
+    else:
+        return render(request, 'ninja/login.html', context)
 
 def signup(request):
     signup_form=AddressForm
