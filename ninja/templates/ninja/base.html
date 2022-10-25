@@ -63,6 +63,16 @@
     <div class="sidebar">
     <!-- Sidebar Menu -->
       <nav class="mt-2">
+        <!-- Login -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:login' as login_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:login' %}" class="nav-link {% if request.path == login_url %}active{% endif %}">
+              <i class="nav-icon fa fa-fw fa-user text-white"></i>
+              <p>Login</p>
+            </a>
+          </li>
+        </ul>
         <!-- Home -->
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           {% url 'ninja:home' as home_url %}  
@@ -90,6 +100,26 @@
             <a href="{% url 'ninja:signup' %}" class="nav-link {% if request.path == signup_url %}active{% endif %}">
               <i class="nav-icon fas fa-male text-white"></i>
               <p>Sign up</p>
+            </a>
+          </li>
+        </ul>
+        <!-- Oracle Report -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:oreport' as oreport_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:oreport' %}" class="nav-link {% if request.path == oreport_url %}active{% endif %}">
+              <i class="nav-icon fa fa-fw fa-search text-white"></i>
+              <p>Oracle Report</p>
+            </a>
+          </li>
+        </ul>
+        <!-- Pivot Report -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:preport' as preport_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:preport' %}" class="nav-link {% if request.path == preport_url %}active{% endif %}">
+              <i class="nav-icon fa fa-fw fa-envelope text-white"></i>
+              <p>Pivot Report</p>
             </a>
           </li>
         </ul>
