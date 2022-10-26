@@ -123,6 +123,16 @@
             </a>
           </li>
         </ul>
+         <!-- Pivot Report -->
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:wreport' as wreport_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:wreport' %}" class="nav-link {% if request.path == wreport_url %}active{% endif %}">
+              <i class="nav-icon fa fa-fw fa-home text-white"></i>
+              <p>Warehouse Report</p>
+            </a>
+          </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

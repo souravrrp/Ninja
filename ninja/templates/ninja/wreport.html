@@ -1,5 +1,5 @@
 {% extends 'ninja/base.html' %}
-{% block title %}Pivot Report{%endblock%}
+{% block title %}Warehouse Report{%endblock%}
 {% block content %}
 
 <div class="content-wrapper">
@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Pivot Report</h1>
+            <h1 class="m-0">Warehouse Report</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{% url 'ninja:home' %}">Home</a></li>
-              <li class="breadcrumb-item active">Pivot Report</li>
+              <li class="breadcrumb-item active">Warehouse Report</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,17 +27,15 @@
         <div class="row mb-2">
           <div class="col-12 card">
             <div class="card-header">
-              <h1 class="card-title">List of Pivot Reports</h1>
-                <Div id="allbutton">
-                  <button class="btn btn-sm btn-danger ml-2 font-weight-bold" onClick="window.location.reload();" title="Click here to Reload the Page.">
-                    Reload
-                  </button>
-  
-                  <button style=" color: white; background-color: #1578b9; border-color: #696969; "  type="submit" value="Submit"  class="btn btn-sm ml-10" onclick="tableToCSV()"> 
-                    Download as CSV 
-                  </button> 
-                  
-                </Div>
+              <h1 class="card-title">List of Warehouse Reports</h1>
+             
+                <button class="btn btn-sm btn-danger ml-2 font-weight-bold" onClick="window.location.reload();" title="Click here to Reload the Page.">
+                  Reload
+                </button>
+
+                <button style=" color: white; background-color: #1578b9; border-color: #696969; "  type="submit" value="Submit"  class="btn btn-sm ml-10" onclick="tableToCSV()"> 
+                  Download as CSV 
+                </button>
              
             </div>
             <div class="card-body">
@@ -55,16 +53,17 @@
                 </div>
                 {% endif %}
 
+              <div class="table-responsive">
 
-                <div class="table table-responsive" id="text">
+              <!-- Content start -->
 
-                  <!-- Content start -->
-    
-                    {{ results | safe }}
-    
-    
-                  <!-- Content end -->
-                  </div>
+                {{ results | safe }}
+
+
+              <!-- Content end -->
+              </div>
+
+
               </div>
             </div>
           </div>
@@ -76,6 +75,11 @@
   <!-- /.content-wrapper -->
 {% endblock %}
 {% block extra_js %}
+<script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
 <script type="text/javascript">
   function tableToCSV() {
 
@@ -151,6 +155,4 @@
       document.body.removeChild(temp_link);
   }
 </script>
-<!--Generate TEXT-->
-
 {% endblock %}

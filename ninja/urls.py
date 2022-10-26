@@ -12,6 +12,7 @@ urlpatterns = [
     path('report/', views.report_view, name= "report"),
     path('oreport/', views.oreport_view, name= "oreport"),
     path('preport/', views.preport_view, name= "preport"),
+    path('wreport/', views.wreport_view, name= "wreport"),
     path('signup/', views.signup, name="signup"),
     path('profile/', views.profile, name="profile"),
     path('',views.index,name='index'),
