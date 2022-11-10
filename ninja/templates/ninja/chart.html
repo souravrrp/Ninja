@@ -1,0 +1,153 @@
+{% extends 'ninja/base.html' %}
+{% block title %}Home{%endblock%}
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'ninja:home' %}">Home</a></li>
+              <li class="breadcrumb-item active">Home</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-12 card">
+            <div class="card-header">
+              <h1 class="card-title">List of Reports</h1>
+             
+                <button class="btn btn-sm btn-danger ml-2 font-weight-bold" onClick="window.location.reload();" title="Click here to Reload the Page.">
+                  Reload
+                </button>
+             
+            </div>
+            <div class="card-body">
+              <div class="col-md-12">
+
+                {% if messages %}
+                <div class="row">
+                  <div class="col-md-12">
+                    {% for message in messages %}
+                    <div class="alert alert-{% if message.tags %}{{ message.tags }} {% endif %}" role="alert">
+                      <p class="mb-0 text-center">{{ message }}</p>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+              <!-- Content start -->
+              <!-- Bar Chart -->
+              <div>
+                <h2 class="card-title">Bar Chart:</h2>
+                <span><img src="{{MEDIA_URL}}/files/barchart.png" class="fa-bars" alt="barchart"></span>            
+              </div>
+              <!-- Scatter Chart -->
+              <div>
+                <h2 class="card-title">Scatter Chart:</h2>
+                {% for elem in scat_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Histogram -->
+              <div>
+                <h2 class="card-title">Histogram:</h2>
+                {% for elem in histogram_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Bar Polar Chart -->
+              <div>
+                <h2 class="card-title">Bar Polar Chart:</h2>
+                <span><img src="{{MEDIA_URL}}/files/barpolarchart.png" class="fa-bars" alt="barpolarchart"></span>            
+              </div>
+              <!-- Pie Chart -->
+              <div>
+                <h2 class="card-title">Carve Chart:</h2>
+                {% for elem in cav_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- HTML Plot Chart -->
+              <div>
+                <h2 class="card-title">HTML Plot Chart:</h2>
+                {% for elem in html_plot_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- HTML Bar Chart -->
+              <div>
+                <h2 class="card-title">HTML Bar Chart:</h2>
+                {% for elem in html_bar_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Histogram Chart -->
+              <div>
+                <h2 class="card-title">Histogram Chart:</h2>
+                {% for elem in hist_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Pie Chart -->
+              <div>
+                <h2 class="card-title">Pie Chart:</h2>
+                {% for elem in html_pie_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Donut Chart -->
+              <div>
+                <h2 class="card-title">Donut Chart:</h2>
+                {% for elem in html_donut_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Line Chart -->
+              <div>
+                <h2 class="card-title">Line Chart:</h2>
+                {% for elem in html_line_chart %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Connected Scatterplot -->
+              <div>
+                <h2 class="card-title">Connected Scatterplot:</h2>
+                {% for elem in html_scatterplot %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Barplot -->
+              <div>
+                <h2 class="card-title">Barplot:</h2>
+                {% for elem in html_barplot %}
+                  {{elem|safe}}
+                {% endfor %}
+              </div>
+              <!-- Content end -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.content -->
+</div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+{% block extra_js %}
+{% endblock %}

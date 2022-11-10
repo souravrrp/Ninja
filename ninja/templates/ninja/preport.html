@@ -1,5 +1,6 @@
 {% extends 'ninja/base.html' %}
 {% block title %}Pivot Report{%endblock%}
+{% load static %}
 {% block content %}
 
 <div class="content-wrapper">
@@ -32,9 +33,25 @@
                   <button class="btn btn-sm btn-danger ml-2 font-weight-bold" onClick="window.location.reload();" title="Click here to Reload the Page.">
                     Reload
                   </button>
+
+                  <button  style=" color: white; background-color: #e99a23; border-color: #696969; "  type="button" id="save" value="Save"  class="btn btn-sm ml-10"> 
+                    Save 
+                  </button> 
   
-                  <button style=" color: white; background-color: #1578b9; border-color: #696969; "  type="submit" value="Submit"  class="btn btn-sm ml-10" onclick="tableToCSV()"> 
+                  <button style=" color: white; background-color: #1578b9; border-color: #696969; "  type="submit" value="CSV"  id="etc"  class="btn btn-sm ml-10" onclick="tableToCSV()"> 
                     Download as CSV 
+                  </button> 
+
+                  <button  style=" color: white; background-color: #10dbb9; border-color: #696969; "  type="submit" value="PDF"  id="etp" class="btn btn-sm ml-10"> 
+                    Download as PDF 
+                  </button> 
+
+                  <button  style=" color: white; background-color: #850bf8; border-color: #696969; "  type="submit" value="EXCEL" id="ete" class="btn btn-sm ml-10"> 
+                    Download as EXCEL 
+                  </button> 
+
+                  <button  style=" color: white; background-color: #3b0aec; border-color: #696969; "  type="submit" value="TEXT" id="ett"  class="btn btn-sm ml-10"> 
+                    Download as TEXT 
                   </button> 
                   
                 </Div>
@@ -56,14 +73,17 @@
                 {% endif %}
 
 
-                <div class="table table-responsive" id="text">
+                <div class="table table-responsive" id="all_data">
+                  <table id="table_data">
+                    
+                    <!-- Content start -->
+      
+                      {{ results | safe }}
+      
+      
+                    <!-- Content end -->
 
-                  <!-- Content start -->
-    
-                    {{ results | safe }}
-    
-    
-                  <!-- Content end -->
+                  </table>
                   </div>
               </div>
             </div>
@@ -75,82 +95,11 @@
 </div>
   <!-- /.content-wrapper -->
 {% endblock %}
+
 {% block extra_js %}
-<script type="text/javascript">
-  function tableToCSV() {
-
-      // Variable to store the final csv data
-      var csv_data = [];
-
-      // Get each row data
-      var rows = document.getElementsByTagName('tr');
-      for (var i = 0; i < rows.length; i++) {
-
-          // Get each column data
-          var cols = rows[i].querySelectorAll('td,th');
-
-          // Stores each csv row data
-          var csvrow = [];
-          for (var j = 0; j < cols.length; j++) {
-
-              // Get the text data of each cell
-              // of a row and push it to csvrow
-              csvrow.push(cols[j].innerHTML);
-          }
-
-          // Combine each column value with comma
-          csv_data.push(csvrow.join(","));
-      }
-
-      // Combine each row data with new line character
-      csv_data = csv_data.join('\n');
-
-      // Call this function to download csv file 
-      downloadCSVFile(csv_data);
-
-  }
-
-  function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
-
-  function downloadCSVFile(csv_data) {
-
-      // Create CSV file object and feed
-      // our csv_data into it
-      CSVFile = new Blob([csv_data], {
-          type: "text/csv"
-      });
-
-      // Create to temporary link to initiate
-      // download process
-      var temp_link = document.createElement('a');
-
-      //Random file name with file_name size
-      var filename = makeid(10);
-
-      // Download csv file
-      //temp_link.download = "GfG.csv";
-      temp_link.download = filename.concat(".csv");
-      var url = window.URL.createObjectURL(CSVFile);
-      temp_link.href = url;
-
-      // This link should not be displayed
-      temp_link.style.display = "none";
-      document.body.appendChild(temp_link);
-
-      // Automatically click the link to
-      // trigger download
-      temp_link.click();
-      document.body.removeChild(temp_link);
-  }
-</script>
-<!--Generate TEXT-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+    crossorigin="anonymous"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script><!-- html2canvas 1.0.0-alpha.11 or higher version is needed -->
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+<script src="{% static 'custom/preport.js' %}"></script>
 {% endblock %}

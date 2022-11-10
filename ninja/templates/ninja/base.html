@@ -29,7 +29,7 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         {% url 'ninja:home' as home_url %}
-        <a href="{% url 'ninja:home' %}" class="nav-link {% if request.path == home_url %}active{% endif %}">Medic</a>
+        <a href="{% url 'ninja:home' %}" class="nav-link {% if request.path == home_url %}active{% endif %}">AppName</a>
       </li>
       
     </ul>
@@ -123,13 +123,73 @@
             </a>
           </li>
         </ul>
-         <!-- Pivot Report -->
+         <!-- Warehouse Report -->
          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           {% url 'ninja:wreport' as wreport_url %}  
           <li class="nav-item">
             <a href="{% url 'ninja:wreport' %}" class="nav-link {% if request.path == wreport_url %}active{% endif %}">
               <i class="nav-icon fa fa-fw fa-home text-white"></i>
               <p>Warehouse Report</p>
+            </a>
+          </li>
+        </ul>
+        <!-- BI Report -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:bireport' as bireport_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:bireport' %}" class="nav-link {% if request.path == bireport_url %}active{% endif %}">
+              <i class="nav-icon fas fa-clock text-white" aria-hidden="false"></i>
+              <p>BI Report</p>
+            </a>
+          </li>
+        </ul>
+        <!-- To Do JS -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:todojs' as todojs_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:todojs' %}" class="nav-link {% if request.path == todojs_url %}active{% endif %}">
+              <i class="nav-icon fas fa-edit text-danger" aria-hidden="false"></i>
+              <p>To Do JS</p>
+            </a>
+          </li>
+        </ul>
+        <!-- To Do DJ -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:tododj' as tododj_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:tododj' %}" class="nav-link {% if request.path == tododj_url %}active{% endif %}">
+              <i class="nav-icon fas fa-edit text-white" aria-hidden="false"></i>
+              <p>To Do DJ</p>
+            </a>
+          </li>
+        </ul>
+        <!-- To Do BS -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:todobs' as todobs_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:todobs' %}" class="nav-link {% if request.path == todobs_url %}active{% endif %}">
+              <i class="nav-icon fas fa-plus text-white" aria-hidden="false"></i>
+              <p>To Do BS</p>
+            </a>
+          </li>
+        </ul>
+        <!-- Calender -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:calender' as calender_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:calender' %}" class="nav-link {% if request.path == calender_url %}active{% endif %}">
+              <i class="nav-icon fas fa-calendar-alt text-white" aria-hidden="false"></i>
+              <p>Calender</p>
+            </a>
+          </li>
+        </ul>
+        <!-- Chart -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {% url 'ninja:chart' as chart_url %}  
+          <li class="nav-item">
+            <a href="{% url 'ninja:chart' %}" class="nav-link {% if request.path == chart_url %}active{% endif %}">
+              <i class="nav-icon fas fa-chart-pie text-white" aria-hidden="false"></i>
+              <p>Chart</p>
             </a>
           </li>
         </ul>
