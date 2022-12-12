@@ -22,3 +22,4 @@ pandas==1.5.1
 datatable==1.0.0
 matplotlib==3.6.2
 mpld3==0.5.9
+python-decouple==3.6
