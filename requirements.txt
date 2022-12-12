@@ -19,3 +19,6 @@ toml==0.10.2
 django-crispy-forms==1.14.0
 pandas==1.5.1
 #numpy==1.23.4
+datatable==1.0.0
+matplotlib==3.6.2
+mpld3==0.5.9

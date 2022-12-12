@@ -376,7 +376,7 @@ def chart_view(request):
     
     # plotting a bar chart
     df.plot(x="Name", y="Age", kind="bar")
-    plt.savefig(r'D:\Sourav SBL\Projects\ninja\Ninja\files\barchart.png')
+    plt.savefig(r'D:\Sourav SBL\Projects\Ninja\files\barchart.png')
 
 
     # plotting a scatter chart
